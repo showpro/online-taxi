@@ -15,6 +15,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * 模拟安卓客户端请求的加密解密
+ */
 public class AndroidRequestTest {
 	
 	
