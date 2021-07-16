@@ -87,11 +87,11 @@
             <artifactId>druid</artifactId>
             <version>1.1.12</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
+        <!--   多实例启动时，要关闭热部署，否则只能启动最新一个实例     -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--        </dependency>-->
 	</dependencies>
 
 	<dependencyManagement>

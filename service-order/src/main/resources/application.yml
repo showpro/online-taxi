@@ -1,6 +1,6 @@
 #服务端口
-#server:
-#  port: 8004
+server:
+  port: 8004
 
 #应用名称及验证账号
 spring: 

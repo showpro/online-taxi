@@ -16,17 +16,17 @@ public class GrabOrderController {
 
     @Autowired
     // 无锁
-    @Qualifier("grabNoLockService")
+    //@Qualifier("grabNoLockService")
     // jvm锁
-//    @Qualifier("grabJvmLockService")
+   //@Qualifier("grabJvmLockService")
     // mysql锁
-//    @Qualifier("grabMysqlLockService")
+   // @Qualifier("grabMysqlLockService")
     // 单个redis
 //    @Qualifier("grabRedisLockService")
     //单个redisson
 //    @Qualifier("grabRedisRedissonService")    
     // 红锁
-//    @Qualifier("grabRedisRedissonRedLockLockService")
+   @Qualifier("grabRedisRedissonRedLockLockService")
     private GrabService grabService;
     
     
