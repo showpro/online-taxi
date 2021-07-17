@@ -9,7 +9,7 @@
     id, name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from tbl_two
     where id = #{id,jdbcType=INTEGER}
@@ -18,7 +18,7 @@
     delete from tbl_two
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  
+
   <insert id="insertSelective" parameterType="com.online.taxi.common.entity.Sms" >
     insert into tbl_two
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -28,7 +28,7 @@
       <if test="name != null" >
         name,
       </if>
-      
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -37,7 +37,7 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.online.taxi.common.entity.Sms" >
@@ -46,9 +46,15 @@
       <if test="name != null" >
         name = #{name},
       </if>
-      
+
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_two
+    </select>
+
 </mapper>

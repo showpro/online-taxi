@@ -21,17 +21,23 @@ public class TestController {
 	}
 	
 	@Autowired
-	private RmTwoService service;
+	private RmTwoService rmTwoService;
 	
 	@GetMapping("/rm2")
-	public String rm1() {
+	public String rm2() {
 //		try {
 //			Thread.sleep(1000);
 //		} catch (InterruptedException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		service.rm2();
+        rmTwoService.rm2();
 		return "rm2 成功";
 	}
+
+    @GetMapping("/rm2-update")
+    public String rm2Update(){
+        rmTwoService.rm2Update();
+        return "rm2 update success";
+    }
 }

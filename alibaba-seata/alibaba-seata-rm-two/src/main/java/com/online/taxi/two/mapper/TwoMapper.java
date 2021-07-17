@@ -1,5 +1,7 @@
 package com.online.taxi.two.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.online.taxi.common.entity.Sms;
@@ -38,5 +40,5 @@ public interface TwoMapper {
      */
     int updateByPrimaryKeySelective(Two record);
 
-   
+    List<Two> selectAll();
 }

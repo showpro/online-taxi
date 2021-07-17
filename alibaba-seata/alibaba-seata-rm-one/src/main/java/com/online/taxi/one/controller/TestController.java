@@ -8,25 +8,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.online.taxi.one.service.RmOneService;
 
 import io.seata.spring.annotation.GlobalTransactional;
+
 /**
  * @author yueyi2019
  */
 @RestController
 @RequestMapping("/test")
 public class TestController {
-	
-	@GetMapping("/api2")
-	public String test() {
-		return "service-sms started";
-	}
-	
-	@Autowired
-	private RmOneService service;
-	
-	@GetMapping("/rm1")
-	@GlobalTransactional(rollbackFor = Exception.class)
-	public String rm1() {
-		service.rm1();
-		return "rm1 成功";
-	}
+
+    @GetMapping("/api2")
+    public String test() {
+        return "service-sms started";
+    }
+
+    @Autowired
+    private RmOneService rmOneService;
+
+    @GetMapping("/rm1")
+    @GlobalTransactional(rollbackFor = Exception.class)
+    public String rm1() {
+        rmOneService.rm1();
+        return "rm1 成功";
+    }
+
+    @GlobalTransactional(rollbackFor = Exception.class)
+    @GetMapping("/rm1-update")
+    public String rm1Update() {
+        rmOneService.rm2Update();
+        return "rm1 update success";
+    }
 }

@@ -12,6 +12,7 @@ import com.online.taxi.one.entity.One;
 public interface OneMapper {
     /**
      * 根据id删除短信记录
+     *
      * @param id
      * @return
      */
@@ -19,6 +20,7 @@ public interface OneMapper {
 
     /**
      * 插入短信记录
+     *
      * @param record
      * @return
      */
@@ -26,6 +28,7 @@ public interface OneMapper {
 
     /**
      * 根据id查询短信记录
+     *
      * @param id
      * @return
      */
@@ -33,10 +36,10 @@ public interface OneMapper {
 
     /**
      * 更新短信记录
+     *
      * @param record
      * @return
      */
     int updateByPrimaryKeySelective(One record);
 
-   
 }
