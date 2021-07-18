@@ -1,4 +1,8 @@
-spring: 
+server:
+  #服务端口
+  port: 8002
+
+spring:
   cloud:
     alibaba:
       seata:
@@ -17,7 +21,7 @@ spring:
          #数据库连接用户名
     username: root                                                        
          #数据库连接密码
-    password: root                                                        
+    password: 123456
          #进行数据库连接池的配置
     dbcp2:          
              #初始化提供的连接数                                                      
@@ -52,7 +56,8 @@ eureka:
 #    enable-self-preservation: false       #关闭保护机制
 #    eviction-interval-timer-in-ms: 2000   #剔除失效服务间隔,单位毫秒
   client:
-    healthcheck:      enabled: true
+    healthcheck:
+      enabled: true
     #设置服务注册中心的URL
     service-url:                      
       defaultZone: http://root:root@eureka-7900:7900/eureka/
@@ -80,11 +85,7 @@ management:
 logging:
   level:
     root: info
-    org.springframework.web.servlet: debug      
-
-server: 
-    #服务端口
-  port: 8002
+    org.springframework.web.servlet: debug
 
 
   

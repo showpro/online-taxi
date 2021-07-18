@@ -1,4 +1,8 @@
-spring: 
+server:
+  #服务端口
+  port: 8003
+
+spring:
   cloud:
     alibaba:
       seata:
@@ -81,10 +85,6 @@ management:
 logging:
   level:
     root: info
-    org.springframework.web.servlet: debug      
-
-server: 
-    #服务端口
-  port: 8003
+    org.springframework.web.servlet: debug
 
   

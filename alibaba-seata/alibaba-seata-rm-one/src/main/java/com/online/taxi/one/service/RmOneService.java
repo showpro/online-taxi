@@ -31,7 +31,7 @@ public class RmOneService {
         o.setName("rm1");
         mapper.insertSelective(o);
         //异常测试，模拟rm1服务抛出一个异常时,rm2和rm3服务数据库数据是否都回滚
-        //		int i = 1/0;
+        // int i = 1/0;
 
         return "";
     }
@@ -40,10 +40,11 @@ public class RmOneService {
         //rm2 更新
         rm2UpdateRemote();
 
-        One rm1 = new One(1, "rm1");
+        //接着往rm1中在新增一条数据，第一次请求正常，第二次再请求，因为表里已经有了，会报错主键冲突，观察rm2的undo表是否有数据
+        One rm1 = new One(2, "rm1");
         mapper.insertSelective(rm1);
         //异常测试，发生异常时，rm1发生异常时，所有的数据是否回滚
-        //int i = 1/0;
+        // int i = 1/0;
         return "";
     }
 
