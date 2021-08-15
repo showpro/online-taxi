@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.taxi.two.service.RmTwoInterface;
 import com.online.taxi.two.service.RmTwoService;
 
 import io.seata.spring.annotation.GlobalTransactional;
@@ -39,5 +40,17 @@ public class TestController {
     public String rm2Update(){
         rmTwoService.rm2Update();
         return "rm2 update success";
+    }
+
+    @Autowired
+    private RmTwoInterface rmTwoInterface;
+
+    @GetMapping("/rm2-tcc")
+    @GlobalTransactional(rollbackFor = Exception.class)
+    public String twoTcc(){
+
+        rmTwoInterface.rm2(null);
+        //        int i = 1/0;
+        return "success";
     }
 }

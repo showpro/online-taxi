@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.taxi.three.service.RmThreeInterface;
 import com.online.taxi.three.service.RmThreeService;
 
 import io.seata.spring.annotation.GlobalTransactional;
@@ -35,4 +36,15 @@ public class TestController {
 //		int i = 1/0;
 		return "rm3成功";
 	}
+
+    @Autowired
+    private RmThreeInterface rmThreeInterface;
+
+    @GetMapping("/rm3-tcc")
+    @GlobalTransactional(rollbackFor = Exception.class)
+    public String threeTcc(){
+
+        rmThreeInterface.rm3(null);
+        return "成功";
+    }
 }

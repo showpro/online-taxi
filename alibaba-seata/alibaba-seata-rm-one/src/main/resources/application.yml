@@ -6,7 +6,9 @@ spring:
   cloud:
     alibaba:
       seata:
-        #和seata server的file.conf（vgroup_mapping.fbs_tx_group= "default"）以及每个微服务resources目录下的file.conf（vgroup_mapping.fbs_tx_group= "default"）要一致
+        #事务组：fbs_tx_group
+        #和seata server的file.conf（vgroup_mapping.fbs_tx_group= "default"），注意：1.4版本的seata server的file.conf已经去掉了
+        #以及每个微服务resources目录下的file.conf（vgroup_mapping.fbs_tx_group= "default"）要一致
         tx-service-group: fbs_tx_group
   application:
     #应用名称
