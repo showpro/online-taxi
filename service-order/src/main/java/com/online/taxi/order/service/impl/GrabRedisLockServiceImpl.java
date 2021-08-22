@@ -15,6 +15,8 @@ import com.online.taxi.order.service.GrabService;
 import com.online.taxi.order.service.OrderService;
 
 /**
+ * redis锁 实际中不这么用
+ *
  * @author yueyi2019
  */
 @Service("grabRedisLockService")
@@ -28,7 +30,7 @@ public class GrabRedisLockServiceImpl implements GrabService {
 	
     @Override
     public ResponseResult grabOrder(int orderId , int driverId){
-        //生成key
+        //生成key：订单id+司机id。 考虑为啥不只用订单id? 因为这种释放锁有可能释放了别人的锁。
     	String lock = "order_"+(orderId+"");
     	/*
     	 *  情况一，如果锁没执行到释放，比如业务逻辑执行一半，运维重启服务，或 服务器挂了，没走 finally，怎么办？
@@ -74,7 +76,7 @@ public class GrabRedisLockServiceImpl implements GrabService {
 //        	stringRedisTemplate.delete(lock.intern());
         	
         	/**
-        	 * 下面代码避免释放别人的锁
+        	 * 下面代码避免释放别人的锁，保证谁加的锁谁释放：判断此时的司机id跟锁里面的司机id是否相同
         	 */
         	if((driverId+"").equals(stringRedisTemplate.opsForValue().get(lock.intern()))) {
         		stringRedisTemplate.delete(lock.intern());

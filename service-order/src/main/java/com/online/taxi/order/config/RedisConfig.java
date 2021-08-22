@@ -33,7 +33,7 @@ public class RedisConfig {
 //    }
     //以上为redisson锁
 
-    //以下为红锁
+    //以下为红锁, 3个独立的redis, 只有红锁能正真解决redis问题
     @Bean
     public RedissonClient redissonRed1(){
         Config config = new Config();

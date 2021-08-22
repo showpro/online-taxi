@@ -34,10 +34,10 @@ public class GrabRedisRedissonServiceImpl implements GrabService {
     	String lock = "order_"+(orderId+"");
     	
     	RLock rlock = redissonClient.getLock(lock.intern());
-    	
-    	
+
+
     	try {
-    		// 此代码默认 设置key 超时时间30秒，过10秒，再延时
+    		// 此代码默认 设置key 超时时间30秒，过1/3 = 10秒，再延时
     		rlock.lock();
 			System.out.println("司机:"+driverId+" 执行抢单逻辑");
 			

@@ -25,14 +25,17 @@ public class GrabMysqlLockServiceImpl implements GrabService {
 	
     @Override
     public ResponseResult grabOrder(int orderId , int driverId){
-        //生成key
+        //生成key 锁
         OrderLock ol = new OrderLock();
         ol.setOrderId(orderId);
         ol.setDriverId(driverId);
         
         orderLock.set(ol);
         lock.setOrderLockThreadLocal(orderLock);
+        //开始加锁
         lock.lock();
+
+        // 执行业务。。。
 //        System.out.println("司机"+driverId+"加锁成功");
 
         try {
@@ -46,7 +49,7 @@ public class GrabMysqlLockServiceImpl implements GrabService {
             }
             
         } finally {
-        	
+        	//释放锁
             lock.unlock();
         }
         

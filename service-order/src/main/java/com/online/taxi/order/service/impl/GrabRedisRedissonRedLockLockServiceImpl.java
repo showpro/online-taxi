@@ -1,5 +1,7 @@
 package com.online.taxi.order.service.impl;
 
+import java.util.concurrent.TimeUnit;
+
 import com.online.taxi.common.constant.RedisKeyConstant;
 import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.order.service.GrabService;
@@ -42,10 +44,19 @@ public class GrabRedisRedissonRedLockLockServiceImpl implements GrabService {
         //红锁
         RLock rLock1 = redissonRed1.getLock(lockKey);
         RLock rLock2 = redissonRed2.getLock(lockKey);
-        RLock rLock3 = redissonRed2.getLock(lockKey);
+        RLock rLock3 = redissonRed3.getLock(lockKey);
         RedissonRedLock rLock = new RedissonRedLock(rLock1,rLock2,rLock3);
 
         rLock.lock();
+
+        /***
+         * 演示锁续命
+         */
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         try {
     		// 此代码默认 设置key 超时时间30秒，过10秒，再延时

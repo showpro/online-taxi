@@ -20,6 +20,9 @@ public class OrderServiceImpl implements OrderService {
          } catch (InterruptedException e) {
              e.printStackTrace();
          }
+
+		 //还有很多其他业务
+
 		if(order.getStatus().intValue() == 0) {
 			order.setStatus(1);
 			mapper.updateByPrimaryKeySelective(order);

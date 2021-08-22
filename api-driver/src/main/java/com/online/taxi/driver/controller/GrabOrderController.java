@@ -12,6 +12,8 @@ import com.online.taxi.common.dto.ResponseResult;
 import com.online.taxi.driver.service.RestTemplateRequestService;
 
 /**
+ * 司机抢单请求 ---> 订单服务
+ *
  * @author yueyi2019
  */
 @RestController
@@ -19,11 +21,19 @@ import com.online.taxi.driver.service.RestTemplateRequestService;
 public class GrabOrderController {
 
 	@Autowired
-	private RestTemplateRequestService restTemplateRequestService; 
-    
+	private RestTemplateRequestService restTemplateRequestService;
+
+    /**
+     * 抢单
+     *
+     * @param orderId 订单id
+     * @param driverId 司机id
+     * @return
+     */
     @GetMapping("/do/{orderId}")
     public ResponseResult grab(@PathVariable("orderId") int orderId, int driverId){
-    	restTemplateRequestService.grabOrder(orderId,driverId);
+    	// 调用订单服务（多实例）
+        restTemplateRequestService.grabOrder(orderId,driverId);
         return ResponseResult.success("");
     }
 }

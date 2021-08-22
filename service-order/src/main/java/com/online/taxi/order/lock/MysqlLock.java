@@ -15,6 +15,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 数据库锁：利用sql主键唯一约束
+ */
 @Service
 @Data
 public class MysqlLock implements Lock {
@@ -24,6 +27,9 @@ public class MysqlLock implements Lock {
 	
 	private ThreadLocal<OrderLock> orderLockThreadLocal ;
 
+    /**
+     * 阻塞式加锁
+     */
 	@Override
 	public void lock() {
 		// 1、尝试加锁
@@ -55,7 +61,10 @@ public class MysqlLock implements Lock {
 		
 		
 	}
-	
+
+    /**
+     * 释放锁
+     */
 	@Override
 	public void unlock() {
 		mapper.deleteByPrimaryKey(orderLockThreadLocal.get().getOrderId());
